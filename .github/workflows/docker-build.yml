@@ -3,10 +3,12 @@ name: Docker Build
 on:
   push:
     branches:
-      - 'main'
+      - main
 
 jobs:
   docker:
+    # only run if the tests passed
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       -
