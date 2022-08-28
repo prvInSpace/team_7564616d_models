@@ -104,7 +104,6 @@ def get_price_forecast(forecast) -> list:
     """
 
     dates = set(forecast["settlementDate"])
-    print(dates)
 
     outputs = {}
     for date in dates:
@@ -120,7 +119,7 @@ def get_price_forecast(forecast) -> list:
                 estimate = get_price_estimate(selection)
                 prices.append(estimate)
             else:
-                prices.append("NaN")
+                prices.append(float("nan"))
 
         outputs[date] = prices
 
@@ -151,5 +150,5 @@ def predict_price_tomorrow():
             [f"{tomorrow} {i//2:02d}:{(i%2)*30:02d}:00" for i in range(48)]
         ),
         name="price",
-    )
+    ).dropna()
     return series.to_frame()
