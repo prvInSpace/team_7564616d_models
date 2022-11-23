@@ -6,6 +6,7 @@ import os
 import pandas as pd
 
 # Ensure that both source code and bundled data are correctly found
+original_wd = os.getcwd()
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Environment needs to be set up before importing the bidding infrastructure
@@ -21,6 +22,8 @@ from src.wind import wind
 # Load our mocked/cached API data
 _dayahead = pd.read_csv("../coding_challenge_2022-23_data/market_index.csv")
 _weather = pd.read_csv("../coding_challenge_2022-23_data/weather_mock.csv")
+
+os.chdir(original_wd)
 
 
 def get_price_and_quantity(date: dt.date) -> pd.DataFrame:
