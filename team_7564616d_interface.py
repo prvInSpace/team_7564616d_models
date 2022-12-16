@@ -102,9 +102,9 @@ def get_price_and_quantity(date: _dt.date) -> _pd.DataFrame:
         raise ValueError("Unable to predict for {date}.")
 
     # Reformat bid for simplicity of output
-    result.price = result.price * (-1) ** (result.type == "BUY")
+    result["quantity"] = result.volume * (-1) ** (result.type == "BUY")
     result.set_index("hour_ID", inplace=True)
-    result.drop(columns=["type", "applying_date"], inplace=True)
+    result = result.loc[:, ["quantity", "price"]]
     return result
 
 
