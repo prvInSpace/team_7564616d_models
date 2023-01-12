@@ -2,7 +2,7 @@
 
 import datetime as _dt
 import os as _os
-
+from pathlib import Path
 import pandas as _pd
 
 # Ensure that both source code and bundled data are correctly found
@@ -20,8 +20,8 @@ from src.solar import solar as _solar
 from src.wind import wind as _wind
 
 # Load our mocked/cached API data
-_dayahead = _pd.read_csv("../coding_challenge_2022-23_data/market_index.csv")
-_weather = _pd.read_csv("../coding_challenge_2022-23_data/weather_mock.csv")
+_dayahead = _pd.read_csv(Path(__file__).absolute().parent.parent / "agile_snails_coding_challenge/dummy_data/market_index.csv")
+_weather = _pd.read_csv(Path(__file__).absolute().parent.parent / "agile_snails_coding_challenge/dummy_data/weather_mock.csv")
 
 _os.chdir(_original_wd)
 
